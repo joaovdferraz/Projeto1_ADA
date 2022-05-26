@@ -105,7 +105,7 @@ def mostrar_opções() -> None :
 
 def print_maior_valor(maior_valor:dict) -> None :
     '''
-    Recebe o dicionário do produto de maior valor e imprimi seus valores
+    Recebe o dicionário do produto de maior valor e imprimi seus valores.
     '''
     id = maior_valor["id"]
     valor = maior_valor["preco"]
