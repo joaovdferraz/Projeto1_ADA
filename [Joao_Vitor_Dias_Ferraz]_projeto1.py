@@ -47,10 +47,7 @@ def produto_mais_caro(dados:list, categoria:str) -> dict:
     O parâmetro "categoria" é uma string contendo o nome de uma categoria.
     Essa função deverá retornar um dicionário representando o produto mais caro da categoria dada.
     '''
-    lista_por_categoria = []
-    for produtos in dados:
-        if produtos["categoria"] == categoria:
-            lista_por_categoria.append(produtos)
+    lista_por_categoria = listar_por_categoria(dados,categoria)    
     lista_em_ordem = sorted(lista_por_categoria, key=lambda x:float(x["preco"]), reverse = True)   
     return lista_em_ordem[0]
     ...
@@ -61,10 +58,7 @@ def produto_mais_barato(dados:list, categoria:str) -> dict:
     O parâmetro "categoria" é uma string contendo o nome de uma categoria.
     Essa função deverá retornar um dicionário representando o produto mais caro da categoria dada.
     '''
-    lista_por_categoria = []
-    for produtos in dados:
-        if produtos["categoria"] == categoria:
-            lista_por_categoria.append(produtos)
+    lista_por_categoria = listar_por_categoria(dados,categoria) 
     lista_em_ordem = sorted(lista_por_categoria, key=lambda x:float(x["preco"]))       
     return lista_em_ordem[0]
     ...
