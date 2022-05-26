@@ -87,39 +87,21 @@ def top_10_baratos(dados:list) -> list:
     return top_10
     ...
 
-def valida_opção(opção:str) -> int:
-    '''
-    Valida o valor da opção digitada e retorna um inteiro.
-    '''
-    while not opção.isdigit():
-        opção = input("Opção inválida, digite um valor entre 0 e 6 ")
-    opção = int(opção) 
-    while opção <0 or opção >6:
-        opção = input("Opção inválida, digite um valor entre 0 e 6 ")    
-        opção = valida_opção(opção)
-    return opção
-
 def mostrar_opções() -> None :
     '''
     Imprimi as possíveis opções
-    '''
-    print("Digite o número que deseja selecionar a opção ")
-    print("1. Listar categorias")
-    print("2. Listar produtos de uma categoria")
-    print("3. Produto mais caro por categoria")
-    print("4. Produto mais barato por categoria")
-    print("5. Top 10 produtos mais caros")
-    print("6. Top 10 produtos mais baratos")
-    print("0. Sair")
-
-def validacategoria(dados:list,categoria:str) -> str:
-    """
-    Valida o valor da categoria digitada e retorna uma string.
-    """
-    lista = listar_categorias(dados)
-    while categoria not in lista:
-        categoria = input("Categoria inválida, digite uma categoria presente no banco de dados. ")
-    return categoria
+    '''    
+    print(
+        "Digite o número que deseja selecionar a opção:\n"
+        "[1]. Listar categorias\n"
+        "[2]. Listar produtos de uma categoria\n"
+        "[3]. Produto mais caro por categoria\n"
+        "[4]. Produto mais barato por categoria\n"
+        "[5]. Top 10 produtos mais caros\n"
+        "[6]. Top 10 produtos mais baratos\n"
+        "[0]. Sair"
+        )
+    
 
 def print_maior_valor(maior_valor:dict) -> None :
     '''
@@ -196,6 +178,29 @@ def print_categorias(lista_categorias:list) -> None :
         print(i)
     print("")
 
+def validacategoria(dados:list,categoria:str) -> str:
+    """
+    Valida o valor da categoria digitada e retorna uma string.
+    """
+    lista = listar_categorias(dados)
+    while categoria not in lista:
+        categoria = input("Categoria inválida, digite uma categoria presente no banco de dados, caso deseje exibir as categorias pressione 9\n")
+        if categoria == "9":
+            print_categorias(lista)
+            categoria = input("Digite a categoria desejada\n")
+    return categoria
+
+def valida_opção(opção:str) -> int:
+    '''
+    Valida o valor da opção digitada e retorna um inteiro.
+    '''
+    while not opção.isdigit():
+        opção = input("Opção inválida, digite um valor entre 0 e 6 \n")
+    opção = int(opção) 
+    while opção <0 or opção >6:
+        opção = input("Opção inválida, digite um valor entre 0 e 6 \n")    
+        opção = valida_opção(opção)
+    return opção
 
 def menu(dados):
     '''
@@ -221,11 +226,11 @@ def menu(dados):
         mostrar_opções()
         opção = valida_opção(input(""))        
         if 2<=opção<=4 :
-            categoria = input("Digite a categoria desejada ")
+            categoria = input("Digite a categoria desejada \n")
             categoria = validacategoria(dados,categoria)
         if opção == 1 : 
             lista_categorias = listar_categorias(dados)
-            print_categorias(lista_categorias)            
+            print_categorias(lista_categorias)   
         elif opção == 2 : 
             lista_por_categoria = listar_por_categoria(dados,categoria)  
             print_por_categoria(lista_por_categoria)             
@@ -241,7 +246,7 @@ def menu(dados):
         elif opção == 6 :
             top_mais_baratos = top_10_baratos(dados)
             print_top_10_baratos(top_mais_baratos)            
-    print("programa encerrado")
+    print("Programa encerrado.")
 # Programa Principal - não modificar!
 d = obter_dados()
 menu(d)
